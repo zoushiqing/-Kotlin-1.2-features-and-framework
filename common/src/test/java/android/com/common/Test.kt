@@ -8,12 +8,11 @@ import org.junit.Test
 class Test {
     @Test
     fun test() {
-        val otherwise = getBolean().yes {
+        getBolean().yes {
             1
-        }.otherwise {
+        }.otherWise{
             2
-        }
-        println(otherwise)
+        }.let(::println)
     }
 
     fun getBolean() = false

@@ -45,7 +45,6 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             }
             false
         })
-
         email_sign_in_button.setOnClickListener { attemptLogin() }
     }
 
@@ -97,6 +96,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             return
         }
 
+        
         // Reset errors.
         email.error = null
         password.error = null
