@@ -17,6 +17,7 @@ import android.provider.ContactsContract
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
@@ -37,6 +38,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         // Set up the login form.
+        Log.e("tag","/////............///////")
         populateAutoComplete()
         password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
@@ -45,6 +47,11 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             }
             false
         })
+        Log.e("tag","！！"+Settings.email)
+        Log.e("tag","！！"+Settings.password)
+        email.setText(Settings.email)
+        password.setText(Settings.password)
+        
         email_sign_in_button.setOnClickListener { attemptLogin() }
     }
 
@@ -96,7 +103,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             return
         }
 
-        
+        Settings.email = email.text.toString()
+        Settings.password = password.text.toString()
+
         // Reset errors.
         email.error = null
         password.error = null

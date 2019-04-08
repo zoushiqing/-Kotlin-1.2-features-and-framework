@@ -8,12 +8,19 @@ import org.junit.Test
 class Test {
     @Test
     fun test() {
-        getBolean().yes {
+        fun getBoolean() = false
+
+        getBoolean().yes {
+            1
+        }.otherWise{
+            2
+        }.let(::println)
+
+        getBoolean().no {
             1
         }.otherWise{
             2
         }.let(::println)
     }
 
-    fun getBolean() = false
 }
