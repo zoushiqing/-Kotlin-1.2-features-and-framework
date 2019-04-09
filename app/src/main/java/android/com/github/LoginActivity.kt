@@ -5,6 +5,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.TargetApi
 import android.app.LoaderManager.LoaderCallbacks
+import android.com.mvp.impl.MainFragment
 import android.content.CursorLoader
 import android.content.Loader
 import android.content.pm.PackageManager
@@ -38,7 +39,13 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         // Set up the login form.
-        Log.e("tag","/////............///////")
+        
+        val mainFragment = MainFragment()
+        Log.d("Mvp", mainFragment.toString())
+        Log.d("Mvp", mainFragment.presenter.toString())
+        Log.d("Mvp", mainFragment.presenter.view.toString())
+        mainFragment.onResume()
+        
         populateAutoComplete()
         password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
@@ -47,11 +54,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             }
             false
         })
-        Log.e("tag","！！"+Settings.email)
-        Log.e("tag","！！"+Settings.password)
         email.setText(Settings.email)
         password.setText(Settings.password)
-        
+
         email_sign_in_button.setOnClickListener { attemptLogin() }
     }
 
